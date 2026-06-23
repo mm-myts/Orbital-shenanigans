@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Orbital transfer</title>
+        <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+        <br><br><br><br>
+
+        <input type="text" id="initialAltitude" name="text" class="input" placeholder="Initial altitude (km)">
+        <br><br>
+        <input type="text" id="finalAltitude" name="text" class="input" placeholder="Final altitude (km)">
+
+        <br><br><br> 
+
+        <button onclick="processNumbers()" class="button">
+                        <span class="shadow"></span>
+                        <span class="edge"></span>
+                <div class="front">
+                        <span>Submit</span>
+                </div>
+        </button>
+
+        <br><br><br><br>
+
+        <canvas class="visualTransfer">
+                <p>Visual of the transfer</p>
+        </canvas>
+        <script src="src/main.js" defer></script>   
+
+</body>
+</html> 

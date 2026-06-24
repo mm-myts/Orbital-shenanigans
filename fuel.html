@@ -10,8 +10,8 @@
 <body>
 
 <header>
-  <h1>ORBITAL TRANSFER VISUALIZER</h1>
-  <span>orbital mechanics visualizer</span>
+  <h1>FUEL CONSUMPTION CALCULATOR</h1>
+  <span>fuel necessary for a mission</span>
 </header>
 
 <div class="layout">
@@ -21,7 +21,7 @@
     <div class="input-group">
       <label>Initial altitude</label>
       <div class="input-wrap">
-        <input type="number" id="alt1" value="1000" min="100" step="1" placeholder="e.g. 329">
+        <input type="number" id="alt1" min="100" step="1" placeholder="e.g. 329">
         <span class="unit">km</span>
       </div>
     </div>
@@ -29,7 +29,7 @@
     <div class="input-group">
       <label>Target altitude</label>
       <div class="input-wrap">
-        <input type="number" id="alt2" value="10000" min="100" step="1" placeholder="e.g. 35793">
+        <input type="number" id="alt2" min="100" step="1" placeholder="e.g. 35793">
         <span class="unit">km</span>
       </div>
     </div>
@@ -37,7 +37,7 @@
     <div class="input-group">
       <label>Spacecraft mass</label>
       <div class="input-wrap">
-        <input type="number" id="alt2" value="10000" min="100" step="1" placeholder="e.g. 35793">
+        <input type="number" id="mass" value="500" min="1" step="1" placeholder="e.g. 500">
         <span class="unit">kg</span>
       </div>
     </div>
@@ -45,7 +45,7 @@
     <div class="input-group">
       <label>Exhaust velocity of the engine</label>
       <div class="input-wrap">
-        <input type="number" id="alt2" value="10000" min="100" step="1" placeholder="e.g. 35793">
+        <input type="number" id="ve" min="100" step="1" placeholder="e.g. 2000">
         <span class="unit">m/s</span>
       </div>
     </div>
@@ -57,20 +57,44 @@
     <div class="divider"></div>
 
     <div>
-      <div class="stats-title">Results</div>
-      <div class="stats" id="stats">
-        <div class="stat-row"><span class="s-label">v₁</span><span class="s-val blue" id="s-v1">—</span></div>
-        <div class="stat-row"><span class="s-label">v₂</span><span class="s-val green" id="s-v2">—</span></div>
-        <div class="stat-row"><span class="s-label">Δv₁</span><span class="s-val red" id="s-dv1">—</span></div>
-        <div class="stat-row"><span class="s-label">Δv₂</span><span class="s-val red" id="s-dv2">—</span></div>
+      <div class="section-label">Results</div>
+      <br>
+      <div class="stats">
+        <div class="stat-row"><span class="s-label">Δv₁</span><span class="s-val red"    id="s-dv1">—</span></div>
+        <div class="stat-row"><span class="s-label">Δv₂</span><span class="s-val red"    id="s-dv2">—</span></div>
         <div class="stat-row"><span class="s-label">Total Δv</span><span class="s-val orange" id="s-dvt">—</span></div>
         <div class="stat-row"><span class="s-label">Transfer time</span><span class="s-val" id="s-tt">—</span></div>
+        <div class="divider" style="margin:4px 0"></div>
+        <div class="stat-row"><span class="s-label">Fuel burn 1</span><span class="s-val blue"   id="s-f1">—</span></div>
+        <div class="stat-row"><span class="s-label">Fuel burn 2</span><span class="s-val green"  id="s-f2">—</span></div>
+        <div class="stat-row"><span class="s-label">Total fuel</span><span class="s-val purple" id="s-ft">—</span></div>
+        <div class="stat-row"><span class="s-label">Initial wet mass</span><span class="s-val" id="s-mw">—</span></div>
       </div>
-    </div>
 
   </aside>
 
-  <div class="charts">
+ <div class="charts">
+    <div class="chart-wrap">
+      <div class="placeholder" id="dv-placeholder">
+        <svg width="48" height="32" viewBox="0 0 48 32" fill="none">
+          <path d="M2 20 L12 20 L12 8 Q28 8 36 24 L36 24 L36 14 L46 14"
+                stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span>v(t) will appear here</span>
+      </div>
+      <div class="plotly-chart" id="dv-chart"></div>
+    </div>
+    <div class="chart-wrap">
+      <div class="placeholder" id="fuel-placeholder">
+        <svg width="48" height="32" viewBox="0 0 48 32" fill="none">
+          <path d="M2 28 L2 28 L16 28 L16 16 L16 16 L30 16 L30 6 L46 6"
+                stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round"
+                stroke-linejoin="round"/>
+        </svg>
+        <span>Fuel graph will appear here</span>
+      </div>
+      <div class="plotly-chart" id="fuel-chart"></div>
+    </div>
   </div>
 
 </div>

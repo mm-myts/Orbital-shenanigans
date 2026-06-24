@@ -1,7 +1,7 @@
 const MU  = 398600.4418;   // km³/s²
 const RE  = 6371;           // km
 
-// Colors
+//  Colors
 const C = {
   bg:     '#0f1117', bg2: '#1a1a2e', grid: '#2a2a3a',
   text:   '#e0e0e0', muted: '#888888',
@@ -9,7 +9,7 @@ const C = {
   earth:  '#1a6fa8'
 };
 
-// ── Kepler ────────────────────────────────────────────────────────────────
+//  Physics 
 function keplerE(M, e) {
   let E = [...M];
   for (let iter = 0; iter < 50; iter++) {
@@ -51,14 +51,14 @@ function vTotal(t_arr, r1, r2) {
   });
 }
 
-// ── linspace helper ────────────────────────────────────────────────────────
+//   linspace helper 
 function linspace(a, b, n) {
   const arr = [];
   for (let i = 0; i < n; i++) arr.push(a + (b - a) * i / (n - 1));
   return arr;
 }
 
-// ── Main ──────────────────────────────────────────────────────────────────
+//  Main
 function run() {
   const errEl = document.getElementById('error-msg');
   errEl.style.display = 'none';
@@ -105,7 +105,7 @@ function run() {
   drawVt(r1, r2, T, v1, v2, vTp, vTa, dv1, dv2);
 }
 
-// ── Orbital geometry ──────────────────────────────────────────────────────
+//  Orbital geometry 
 function drawGeo(r1, r2, a, e, dv1, dv2, alt1, alt2) {
   const theta = linspace(0, 2*Math.PI, 500);
   const cos_t = theta.map(Math.cos);
@@ -208,7 +208,7 @@ function drawGeo(r1, r2, a, e, dv1, dv2, alt1, alt2) {
   Plotly.react('geo-chart', traces, layout, { responsive: true, displayModeBar: false });
 }
 
-// ── v(t) graph ────────────────────────────────────────────────────────────
+//   v(t) graph 
 function drawVt(r1, r2, T, v1, v2, vTp, vTa, dv1, dv2) {
   const pre_dur  = T * 0.12;
   const post_dur = T * 0.12;
@@ -331,8 +331,4 @@ function drawVt(r1, r2, T, v1, v2, vTp, vTa, dv1, dv2) {
   Plotly.react('vt-chart', traces, layout, { responsive: true, displayModeBar: false });
 }
 
-// Allow Enter key to trigger compute
 document.addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
-
-// Auto-run on load with defaults
-window.addEventListener('load', run);

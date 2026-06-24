@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hohmann Transfer Visualizer</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>ORBITAL TRANSFER VISUALIZER</h1>
+  <span>orbital mechanics visualizer</span>
+</header>
+
+<div class="layout">
+
+  <aside class="sidebar">
+
+    <div class="input-group">
+      <label>Initial altitude</label>
+      <div class="input-wrap">
+        <input type="number" id="alt1" value="1000" min="100" step="1" placeholder="e.g. 329">
+        <span class="unit">km</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Target altitude</label>
+      <div class="input-wrap">
+        <input type="number" id="alt2" value="10000" min="100" step="1" placeholder="e.g. 35793">
+        <span class="unit">km</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Spacecraft mass</label>
+      <div class="input-wrap">
+        <input type="number" id="alt2" value="10000" min="100" step="1" placeholder="e.g. 35793">
+        <span class="unit">kg</span>
+      </div>
+    </div>
+
+    <div class="input-group">
+      <label>Exhaust velocity of the engine</label>
+      <div class="input-wrap">
+        <input type="number" id="alt2" value="10000" min="100" step="1" placeholder="e.g. 35793">
+        <span class="unit">m/s</span>
+      </div>
+    </div>
+
+    <div class="error" id="error-msg"></div>
+
+    <button class="button" id="run-btn" onclick="run()">Compute &amp; Plot</button>
+
+    <div class="divider"></div>
+
+    <div>
+      <div class="stats-title">Results</div>
+      <div class="stats" id="stats">
+        <div class="stat-row"><span class="s-label">v₁</span><span class="s-val blue" id="s-v1">—</span></div>
+        <div class="stat-row"><span class="s-label">v₂</span><span class="s-val green" id="s-v2">—</span></div>
+        <div class="stat-row"><span class="s-label">Δv₁</span><span class="s-val red" id="s-dv1">—</span></div>
+        <div class="stat-row"><span class="s-label">Δv₂</span><span class="s-val red" id="s-dv2">—</span></div>
+        <div class="stat-row"><span class="s-label">Total Δv</span><span class="s-val orange" id="s-dvt">—</span></div>
+        <div class="stat-row"><span class="s-label">Transfer time</span><span class="s-val" id="s-tt">—</span></div>
+      </div>
+    </div>
+
+  </aside>
+
+  <div class="charts">
+  </div>
+
+</div>
+
+<script src="./scriptFuel.js" defer></script>   
+</body>
+</html>

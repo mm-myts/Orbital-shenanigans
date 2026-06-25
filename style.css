@@ -320,3 +320,52 @@
   transform: translate(0, -0.25rem);
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+
+@media (max-width: 768px) {
+  header {
+    padding: 16px 20px 14px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  header h1 { font-size: 15px; }
+
+  .layout { flex-direction: column; }
+
+  .sidebar {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 20px 16px;
+    gap: 16px;
+  }
+
+  .input-group { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+  .field       { flex: 1; min-width: 140px; }
+
+  .input-wrap input { padding: 11px 12px; font-size: 15px; }
+
+  .btn { padding: 14px; font-size: 13px; }
+
+  .stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .divider { display: none; }
+
+  .charts {
+    grid-template-columns: 1fr;
+    grid-template-rows: 420px 420px;
+  }
+
+  .chart-wrap {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    min-height: 420px;
+  }
+
+  .chart-wrap:last-child { border-bottom: none; }
+}

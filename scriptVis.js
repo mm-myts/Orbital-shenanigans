@@ -332,3 +332,6 @@ function drawVt(r1, r2, T, v1, v2, vTp, vTa, dv1, dv2) {
 }
 
 document.addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
+
+// Auto-run on load with defaults
+window.addEventListener('load', run);

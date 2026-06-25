@@ -333,3 +333,4 @@ function drawFuel(T, m_wet, m_before_b2, m_dry, m_fuel1, m_fuel2) {
 }
  
 document.addEventListener('keydown', e => { if (e.key === 'Enter') run(); });
+window.addEventListener('load', run);

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bi-Elliptic Transfer Visualizer</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.27.0/plotly.min.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>BI-ELLIPTIC TRANSFER</h1>
+  <span>three-burn orbital maneuver · r_b = 2 × r₂</span>
+</header>
+
+<div class="layout">
+  <aside class="sidebar">
+
+    <div>
+      <div class="section-label">Orbit</div>
+      <br>
+      <div class="input-group">
+        <div class="field">
+          <label>Initial altitude</label>
+          <div class="input-wrap">
+            <input type="number" id="alt1" value="329" min="100" step="1" placeholder="e. g. 329">
+            <span class="unit">km</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Target altitude</label>
+          <div class="input-wrap">
+            <input type="number" id="alt2" value="35793" min="100" step="1" placeholder="e. g. 35793">
+            <span class="unit">km</span>
+          </div>
+        </div>
+        <div class="field">
+          <label>Intermediate apoapsis</label>
+          <div class="input-wrap">
+            <input type="number" id="altb" value="71586" min="100" step="1" placeholder="e.g. 71586">
+            <span class="unit">km</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="error" id="error-msg"></div>
+
+    <button class="button" id="run-btn" onclick="run()">Compute &amp; Plot</button>
+
+    <div class="divider"></div>
+
+    <div>
+      <div class="section-label">Results</div>
+      <div class="stats">
+        <div class="stat-row"><span class="s-label">v₁ (initial)</span>    <span class="s-val blue"   id="s-v1">—</span></div>
+        <div class="stat-row"><span class="s-label">v₂ (final)</span>      <span class="s-val green"  id="s-v2">—</span></div>
+        <div class="divider" style="margin:2px 0"></div>
+        <div class="stat-row"><span class="s-label">Δv₁</span>             <span class="s-val red"    id="s-dv1">—</span></div>
+        <div class="stat-row"><span class="s-label">Δv₂</span>             <span class="s-val red"    id="s-dv2">—</span></div>
+        <div class="stat-row"><span class="s-label">Δv₃</span>             <span class="s-val red"    id="s-dv3">—</span></div>
+        <div class="stat-row"><span class="s-label">Total Δv</span>        <span class="s-val orange" id="s-dvt">—</span></div>
+        <div class="divider" style="margin:2px 0"></div>
+        <div class="stat-row"><span class="s-label">Transfer time</span>   <span class="s-val"        id="s-tt">—</span></div>
+        <div class="stat-row"><span class="s-label">vs Hohmann Δv</span>   <span class="s-val yellow" id="s-hcomp">—</span></div>
+      </div>
+    </div>
+
+  </aside>
+
+  <div class="charts">
+    <div class="chart-wrap">
+      <div class="placeholder" id="geo-placeholder">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+          <circle cx="24" cy="24" r="8" stroke="#4a9eff" stroke-width="1.5"/>
+          <ellipse cx="24" cy="24" rx="20" ry="20" stroke="#3ecf8e" stroke-width="1.5"/>
+          <path d="M24 4 Q44 24 24 44" stroke="#ff7c3a" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+          <path d="M24 4 Q4 24 24 44" stroke="#b57aff" stroke-width="1.5" fill="none" stroke-dasharray="4 3"/>
+        </svg>
+        <span>Enter altitudes and click Compute</span>
+      </div>
+      <div class="plotly-chart" id="geo-chart"></div>
+    </div>
+    <div class="chart-wrap">
+      <div class="placeholder" id="vt-placeholder">
+        <svg width="48" height="32" viewBox="0 0 48 32" fill="none">
+          <path d="M2 22 L10 22 L10 10 Q18 10 22 26 L22 4 Q30 4 34 20 L34 14 L46 14"
+                stroke="#888" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <span>v(t) will appear here</span>
+      </div>
+      <div class="plotly-chart" id="vt-chart"></div>
+    </div>
+  </div>
+</div>
+
+<script src="./scriptElli.js" defer></script>  
+</body>
+</html>
